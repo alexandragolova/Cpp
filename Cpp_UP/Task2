@@ -1,0 +1,41 @@
+//Използвайки само рекурсия (т.е. без използване на цикли) при въведено естествено число N (N < = 20)
+// изведете на екрана следната фигура
+
+#include <iostream>
+using namespace std;
+
+void numberFunction(int i,int n) {
+	cout << i;
+	i++;
+	if (i<n) {
+		numberFunction(i,n);
+	}
+}
+
+void printDigits(int n, int target)
+{
+	cout << endl;
+	numberFunction(1, n);	
+	n++;
+	if (n <= target)
+	{
+		printDigits(n, target);
+	}
+	cout << endl;
+	numberFunction(1, n);
+}
+
+int main(void)
+{
+	int n;
+
+	do
+	{
+		cout << "n= ";
+		cin >> n;
+
+	} while (n <= 0 && n >= 20);
+
+	printDigits(1, n);
+	return 0;
+}
