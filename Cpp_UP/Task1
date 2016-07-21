@@ -1,0 +1,60 @@
+//Задача: Напишете програма, която въвежда масив от не повече от 1000 естествени числа, 
+//не надминаващи един милиард всяко. След това с помощта на рекурсивна функция копирайте 
+//четните елементи в нов масив. Изведете резултата на екрана.
+
+#include<iostream>
+using namespace std;
+
+bool CheckNumber(int n)
+{
+	if (n % 2 == 0)
+		return true;
+	else return false;
+}
+
+void CopyArray(int i, int j, int n, int arr[], int checkedArray[])
+{
+	if (CheckNumber(arr[i]))
+	{
+		checkedArray[j] = arr[i];
+		j++;
+	}
+	i++;
+	if (i <= n) {
+		CopyArray(i, j, n, arr, checkedArray);
+	}
+}
+
+
+void Print(int i, int n, int checkedArray[]) {
+	int end = sizeof(checkedArray);
+	cout << checkedArray[i] << endl;
+	i++;
+	if (i <= end) {
+		Print(i, n, checkedArray);
+	}
+}
+
+int main()
+{
+	int arr[1000], checkedArray[1000], n;
+
+	do
+	{
+		cout << "n=";
+		cin >> n;
+	} while (n > 1000 || n < 0);
+
+	for (int i = 1; i <= n;)
+	{
+		cout << "arr[" << i << "]= ";
+		cin >> arr[i];
+		if (arr[i] < 100000)
+			i++;
+	}
+
+	CopyArray(1, 1, n, arr, checkedArray);
+	Print(1, n, checkedArray);
+
+	return 0;
+}
